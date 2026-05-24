@@ -24,6 +24,21 @@ public class CryptoServiceImpl implements CryptoService {
 
     @Override
     public List<Crypto> getAllCryptos(String sort) {
+
+        // pokud je vstup null nebo prazdna hodnota
+        if (sort == null || sort.isBlank()) {
+            return portfolio;
+        }
+
+        // ok,  povolime jen vymenovane hodnoty
+        List<String> allowed = List.of("name","price","quantity");
+
+        // napsal tam nekdo neco jineho, nez jsem povolil? koncime
+        if (!allowed.contains(sort)){
+            throw new IllegalArgumentException("Neplatny parametr trideni. Povolene hodnoty jsou: name, price, quantity");
+        }
+
+        // razeni podla povolenych hodnot
         return switch (sort) {
             case "name" -> portfolio.stream()
                     .sorted(Comparator.comparing(Crypto::getName))
