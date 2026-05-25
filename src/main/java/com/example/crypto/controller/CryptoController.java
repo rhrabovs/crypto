@@ -34,11 +34,14 @@ public class CryptoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Crypto> getCryptoBodyId(@PathVariable Integer id) {
+    public ResponseEntity<?> getCryptoBodyId(@PathVariable Integer id) {
         Crypto crypto = cryptoService.getCryptoById(id);
 
         if (crypto == null){
-            return ResponseEntity.notFound().build();
+            //return ResponseEntity.notFound().build();
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("Crypto s id="+id+" neexistuje");
         }
         return  ResponseEntity.ok(crypto);
         // return cryptoService.getCryptoById(id);
