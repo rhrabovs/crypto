@@ -19,6 +19,13 @@ public class CryptoServiceImpl implements CryptoService {
 
     @Override
     public void addCrypto(Crypto crypto) {
+        boolean exists = portfolio.stream()
+                        .anyMatch(c -> c.getId().equals(crypto.getId()));
+
+        if (exists){
+            throw new IllegalArgumentException("Zaznam s ID "+crypto.getId()+" jiz existuje");
+        }
+
         portfolio.add(crypto);
     }
 
