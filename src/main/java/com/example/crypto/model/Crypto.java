@@ -1,17 +1,19 @@
 package com.example.crypto.model;
 
+import java.math.BigDecimal;
+
 public class Crypto {
     private Integer id;
     private String name;
     private String symbol;
-    private Double price;
-    private Double quantity;
+    private BigDecimal price;
+    private BigDecimal quantity;
 
     public Crypto() {}
 
     // konstruktor
 
-    public Crypto(Integer id, String name, String symbol, Double price, Double quantity) {
+    public Crypto(Integer id, String name, String symbol, BigDecimal price, BigDecimal quantity) {
         this.id = id;
         this.name = name;
         this.symbol = symbol;
@@ -45,19 +47,19 @@ public class Crypto {
         this.symbol = symbol;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public Double getQuantity() {
+    public BigDecimal getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Double quantity) {
+    public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
 }
