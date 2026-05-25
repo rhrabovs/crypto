@@ -38,10 +38,7 @@ public class CryptoController {
         Crypto crypto = cryptoService.getCryptoById(id);
 
         if (crypto == null){
-            //return ResponseEntity.notFound().build();
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body("Crypto s id="+id+" neexistuje");
+            throw new IllegalArgumentException("Crypto s id="+id+" neexistuje");
         }
         return  ResponseEntity.ok(crypto);
         // return cryptoService.getCryptoById(id);
